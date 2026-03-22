@@ -1,0 +1,66 @@
+# Quantization configurations
+
+# Post-training quantization (PTQ)
+ptq:
+  enabled: true
+  calibration_samples: 100
+  calibration_method: "minmax"  # minmax, percentile, kl_divergence
+  per_channel: false
+  symmetric: true
+  bit_width: 8
+  target_accuracy_loss: 0.05
+
+# Quantization-aware training (QAT)
+qat:
+  enabled: false
+  epochs: 50
+  learning_rate: 0.0001
+  quantization_schedule: "gradual"  # gradual, immediate
+  fake_quantization: true
+  bit_width: 8
+  per_channel: false
+
+# Dynamic quantization
+dynamic:
+  enabled: false
+  bit_width: 8
+  symmetric: true
+
+# Static quantization
+static:
+  enabled: true
+  bit_width: 8
+  calibration_dataset_size: 200
+  calibration_method: "minmax"
+  per_channel: false
+  symmetric: true
+
+# Mixed precision training
+mixed_precision:
+  enabled: false
+  loss_scale: "dynamic"
+  autocast: true
+
+# Pruning configurations
+pruning:
+  enabled: false
+  sparsity: 0.5
+  pruning_method: "magnitude"  # magnitude, structured, channel
+  pruning_schedule: "gradual"  # gradual, one_shot
+  fine_tune_epochs: 20
+
+# Knowledge distillation
+distillation:
+  enabled: false
+  teacher_model_path: null
+  temperature: 3.0
+  alpha: 0.7
+  beta: 0.3
+  distillation_epochs: 30
+
+# Model compression targets
+compression_targets:
+  model_size_mb: 1.0
+  inference_latency_ms: 50
+  memory_usage_mb: 10
+  accuracy_threshold: 0.85

@@ -1,0 +1,75 @@
+# Device-specific configurations
+
+# Raspberry Pi 4B configuration
+raspberry_pi:
+  device_name: "Raspberry Pi 4B"
+  cpu_cores: 4
+  memory_gb: 4
+  storage_gb: 32
+  power_consumption_w: 3.4
+  inference_target: "cpu"
+  supported_formats: ["tflite", "onnx"]
+  optimization_flags:
+    - "USE_NEON"
+    - "USE_THREADS"
+  max_batch_size: 1
+  max_sequence_length: 10
+
+# Jetson Nano configuration
+jetson_nano:
+  device_name: "Jetson Nano"
+  cpu_cores: 4
+  memory_gb: 4
+  storage_gb: 16
+  power_consumption_w: 5.0
+  inference_target: "gpu"
+  supported_formats: ["tflite", "onnx", "tensorrt"]
+  optimization_flags:
+    - "USE_CUDA"
+    - "USE_TENSORRT"
+  max_batch_size: 1
+  max_sequence_length: 10
+
+# Android device configuration
+android:
+  device_name: "Android Device"
+  cpu_cores: 8
+  memory_gb: 6
+  storage_gb: 128
+  power_consumption_w: 2.0
+  inference_target: "cpu"
+  supported_formats: ["tflite", "onnx"]
+  optimization_flags:
+    - "USE_NNAPI"
+    - "USE_GPU_DELEGATE"
+  max_batch_size: 1
+  max_sequence_length: 10
+
+# iOS device configuration
+ios:
+  device_name: "iOS Device"
+  cpu_cores: 6
+  memory_gb: 4
+  storage_gb: 128
+  power_consumption_w: 1.5
+  inference_target: "cpu"
+  supported_formats: ["coreml", "onnx"]
+  optimization_flags:
+    - "USE_COREML"
+    - "USE_ANECORE"
+  max_batch_size: 1
+  max_sequence_length: 10
+
+# Generic edge device configuration
+generic_edge:
+  device_name: "Generic Edge Device"
+  cpu_cores: 2
+  memory_gb: 2
+  storage_gb: 8
+  power_consumption_w: 1.0
+  inference_target: "cpu"
+  supported_formats: ["tflite", "onnx"]
+  optimization_flags:
+    - "USE_THREADS"
+  max_batch_size: 1
+  max_sequence_length: 5
